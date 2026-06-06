@@ -1,0 +1,1302 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\usepackage{multicol}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+  \fancyhf{} % pas d'en-tête ni pied
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+customHeadersFooters
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Left Header
+\begin_inset Graphics
+	filename Logo FIIT.png
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Right Header
+Augustin BRESSAC
+\end_layout
+
+\begin_layout Title
+Project Documentation
+\begin_inset Newline newline
+\end_inset
+
+DHT sensor data monitoring
+\end_layout
+
+\begin_layout Author
+Augustin BRESSAC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+The aim of this project is to monitor signal obtained from a real sensor
+ thanks to a web application in order to fulfill the Internet of Things
+ (IoT) concept.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This particular project will use a DHT sensor to monitor humidity and temperatur
+e of the environment.
+\end_layout
+
+\begin_layout Standard
+The user will be able to interact with the system and to chose different
+ types of visualizations (charts, gauges and table) of the data obtained
+ by the sensor.
+\end_layout
+
+\begin_layout Standard
+The system will also be able to work offline, even when the sensor is not
+ connected.
+\end_layout
+
+\begin_layout Standard
+Finnally, the solution should have been compared to the solution on the
+ ThingsBoard platform, unfortunately, an incident occured ( 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:ThingsBoard-comparaison-(failed)"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Developer manual
+\end_layout
+
+\begin_layout Subsection
+Git
+\end_layout
+
+\begin_layout Standard
+Here's the link to the git of the project :
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Git Repository"
+target "https://github.com/abressac/final_adv_inv_tech_STU"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since I was working alone on the project and It was synchronized with my
+ cloud, I did not make frequent commits to git.
+\end_layout
+
+\begin_layout Subsection
+Requirements
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Requirements"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This project was done using Python 3.10.12 and probably works with all Python
+ 3 versions.
+\end_layout
+
+\begin_layout Subsubsection
+Backend (app.py)
+\end_layout
+
+\begin_layout Standard
+Flask : Framework for the API.
+\end_layout
+
+\begin_layout Standard
+No library needed for database management because of sqlite being used and
+ natively integrated with Python3.
+\end_layout
+
+\begin_layout Standard
+Installation :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pip install Flask
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Frontend (index.html)
+\end_layout
+
+\begin_layout Standard
+Plotly : To display monitored or controlled data in the form of graphs in
+ the client browser.
+\end_layout
+
+\begin_layout Standard
+Gauge.js : To display monitored or controlled data in the form of gauges
+ in the client browser
+\end_layout
+
+\begin_layout Standard
+Installation :
+\end_layout
+
+\begin_layout Standard
+no installation needed, files already in the repository.
+\end_layout
+
+\begin_layout Subsubsection
+Firmware (main.ino)
+\end_layout
+
+\begin_layout Standard
+This project was done using arduinoIDE 2.3.8.
+\end_layout
+
+\begin_layout Standard
+Libs :
+\end_layout
+
+\begin_layout Standard
+ESP8266WiFi : manage wifi connection
+\end_layout
+
+\begin_layout Standard
+DHT sensor library : read data from the sensor
+\end_layout
+
+\begin_layout Standard
+Adafruit Unified Sensor : DHT lib dependency.
+\end_layout
+
+\begin_layout Standard
+Installation :
+\end_layout
+
+\begin_layout Standard
+For each library used, go to arduinoIDE > tools > manage libraries > search
+ for the library and install it, the code using the library can now be uploaded
+ to the nodeMCU.
+\end_layout
+
+\begin_layout Subsection
+Architecture of the project
+\end_layout
+
+\begin_layout Subsubsection
+Firmware and data flow
+\end_layout
+
+\begin_layout Standard
+The firmware (main.ino) is a basic C++ code uploaded to the nodeMCU that
+ get the data from the DHT sensor and send it through a http get request
+ to the server (app.py), the server then manage the request and save the
+ data into the database file data.db and the log file log.txt.
+ Finnally, the web browser display the data with the index.html page (cf
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Frontend"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Paragraph
+Variables :
+\end_layout
+
+\begin_layout Standard
+There is 5 variables to change in this program to make it works :
+\end_layout
+
+\begin_layout Standard
+DHTPIN : the nodeMUC pin connected to the 
+\begin_inset Quotes eld
+\end_inset
+
+data
+\begin_inset Quotes erd
+\end_inset
+
+ pin, I used GPIO 5 (cf 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Connections"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+ssid : ssid of the internet network.
+\end_layout
+
+\begin_layout Standard
+password : password of the internet network.
+\end_layout
+
+\begin_layout Standard
+serverIP : IP adress of the machine that will run the server.
+\end_layout
+
+\begin_layout Standard
+serverPort : port chosen when creating the server, 5000 here.
+\end_layout
+
+\begin_layout Subsubsection
+Backend
+\end_layout
+
+\begin_layout Paragraph
+Functions :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+init_db()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Create a new sqlite database to store the data (and actions done by the
+ user), here is the schema of the database :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+CREATE TABLE IF NOT EXISTS sensor_data (
+\end_layout
+
+\begin_layout Plain Layout
+
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+\end_layout
+
+\begin_layout Plain Layout
+
+	timestamp TEXT,
+\end_layout
+
+\begin_layout Plain Layout
+
+	temperature REAL,
+\end_layout
+
+\begin_layout Plain Layout
+
+	humidity REAL,
+\end_layout
+
+\begin_layout Plain Layout
+
+	action TEXT)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+temperature, humidity and action can be NULL since when there is an action
+ there is no data and vice versa.
+\end_layout
+
+\begin_layout Standard
+timestamp could have the 
+\begin_inset Quotes eld
+\end_inset
+
+NOT NULL
+\begin_inset Quotes erd
+\end_inset
+
+ mention, but I chose not to use it, because of potential failure of receiving
+ it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+save_to_db(temp, hum, action="")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Store data and actions done by the user to the sqlite database.
+\end_layout
+
+\begin_layout Standard
+When there is data, there is no action, when there is action there's no
+ data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+log_to_file(temp, hum, action="")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Write data and actions done by the user to the log file.
+\end_layout
+
+\begin_layout Standard
+Same as the database, when there is data, there is no action, when there
+ is action there's no data.
+\end_layout
+
+\begin_layout Paragraph
+Routes :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+render index.html
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/update
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GET, receive data and save it in db/file.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/status
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GET, get the state of the system (open/close, monitoring or not), the route
+ is used to display in the html the current state of the system
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+POST, update the data gathering interval (in seconds), since it is action
+ done by the user, save it in db/file.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/control
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+POST, manage the state of the system (open/close, monitoring or not), since
+ it is action done by the user, save it in db/file.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/clear
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+POST, clear the database and the log file, it is action done by the user,
+ but there is no point in storing it since we actually want to clear the
+ log/db.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/save_log
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+POST, save the log in another text file that is stored in server/data/saves/.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/load_log
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+POST, load a previous saved file, this is done by ovewriting the current
+ db and log file with the content of the saved file.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/api/data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GET, get the last 15 entries of the database to display it.
+\end_layout
+
+\begin_layout Subsubsection
+Frontend
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Frontend"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The frontend display the data in the form of a graph using the plotly library
+ and in the form of a gauge using the gauge.js library.
+\end_layout
+
+\begin_layout Standard
+Each action trigger the corresponding route in the backend.
+\end_layout
+
+\begin_layout Standard
+The frontend check for new data every 2 seconds :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+setInterval(updateData, 2000);
+\end_layout
+
+\begin_layout Plain Layout
+
+setInterval(updateStatus, 2000);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+updateData is a function in index.html that calls the /api/data route and
+ update the display accordingly to the data sent by the server.
+\end_layout
+
+\begin_layout Section
+How to run the project
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:How-to-run"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First, make sure that every library needed is installed and a way to upload
+ the main.ino code (project made using arduino IDE) to the nodeMCU is available
+ (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Requirements"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+Connections
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Connections"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename schema.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Pinout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+VCC on any 3.3V pin.
+\end_layout
+
+\begin_layout Standard
+GND on any GND pin.
+\end_layout
+
+\begin_layout Standard
+DATA on any GPIO pin but change pin accordingly in the code if not GPIO5.
+\end_layout
+
+\begin_layout Standard
+NodeMCU to the PC to upload the code.
+\end_layout
+
+\begin_layout Subsection
+Running the project
+\end_layout
+
+\begin_layout Standard
+Upload main.ino to the nodeMCU.
+\end_layout
+
+\begin_layout Standard
+Run the command (here from the root of the project)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+sudo python3 server/app.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the app is writing in/creating some files, sudo might be needed.
+\end_layout
+
+\begin_layout Standard
+After running the command, open a web browser at the adress shown in the
+ terminal or click 
+\begin_inset CommandInset href
+LatexCommand href
+name "HERE"
+target "http://127.0.0.1:5000/"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+User manual
+\end_layout
+
+\begin_layout Standard
+Run the project following the instructions available in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:How-to-run"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Features
+\end_layout
+
+\begin_layout Subsubsection
+Running capture
+\end_layout
+
+\begin_layout Standard
+After starting it, app will show the data currently in the database, including
+ potential previous data.
+\end_layout
+
+\begin_layout Standard
+To start a new capture (clear the existing data if you want), click on 
+\begin_inset Quotes eld
+\end_inset
+
+open
+\begin_inset Quotes erd
+\end_inset
+
+ to initialize the system (actually not really working like this, since
+ the nodeMCU send data without knowing if anything receive it), then click
+ on 
+\begin_inset Quotes eld
+\end_inset
+
+start
+\begin_inset Quotes erd
+\end_inset
+
+ to start the capture (wont work if system is closed).
+\end_layout
+
+\begin_layout Standard
+Same as start/open, you can stop the capture and close the system with the
+ corresponding buttons.
+\end_layout
+
+\begin_layout Subsubsection
+Clear data
+\end_layout
+
+\begin_layout Standard
+Click on the 
+\begin_inset Quotes eld
+\end_inset
+
+Clear data
+\begin_inset Quotes erd
+\end_inset
+
+ button if you want to clear all the visualizations, the data will be lost
+ if not saved with 
+\begin_inset Quotes eld
+\end_inset
+
+Save Log
+\begin_inset Quotes erd
+\end_inset
+
+ beforehand.
+\end_layout
+
+\begin_layout Subsubsection
+Set capture interval
+\end_layout
+
+\begin_layout Standard
+Set the capture interval (in s) that you want, either using the arrows to
+ increase/decrease it or by writing it.
+\end_layout
+
+\begin_layout Standard
+It should work well with intervals 
+\begin_inset Formula $\geq3s$
+\end_inset
+
+, but since the nodeMCU takes some times to execute its capture loop, the
+ actual interval might be longer for 1 and 2 seconds.
+\end_layout
+
+\begin_layout Subsubsection
+Save log
+\end_layout
+
+\begin_layout Standard
+You can save the current data using the 
+\begin_inset Quotes eld
+\end_inset
+
+Save Log
+\begin_inset Quotes erd
+\end_inset
+
+ button, saved data will be stored in ~/server/data/saves in the project
+ repository.
+\end_layout
+
+\begin_layout Subsubsection
+Load log
+\end_layout
+
+\begin_layout Standard
+You can load data from a log using the 
+\begin_inset Quotes eld
+\end_inset
+
+Load Log
+\begin_inset Quotes erd
+\end_inset
+
+ button, new data will overwrite current data so make sure to save it if
+ you want.
+\end_layout
+
+\begin_layout Subsubsection
+Chart view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graph.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Chart view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The temperature and humidity are displayed on two separate charts, with
+ time on the x axis.
+\end_layout
+
+\begin_layout Standard
+The x axis is not scaled, discontinuity represent any kind of capture interuptio
+n (start/stop, offline, close app etc...).
+\end_layout
+
+\begin_layout Standard
+Y axis scales automaticaly depending on the minimum and the maximum of captured
+ data.
+\end_layout
+
+\begin_layout Subsubsection
+Gauge view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gauge.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gauge view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Quotes eld
+\end_inset
+
+current
+\begin_inset Quotes erd
+\end_inset
+
+ mention is a bit of a lie, it is actually the last recorded, so it is the
+ current data only while the system is capturing it.
+\end_layout
+
+\begin_layout Standard
+The edges of gauges are :
+\end_layout
+
+\begin_layout Standard
+- -20 and 60°C for the temperature : common temperatures on earth with a
+ margin.
+\end_layout
+
+\begin_layout Standard
+- 0 to 100% for humidity since it is a percentage.
+\end_layout
+
+\begin_layout Subsubsection
+Table log view
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename table.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Table log view
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The table display only the 15 last rows but the saving and the load features
+ are managing the whole data.
+\end_layout
+
+\begin_layout Subsubsection
+Offline availability.
+\end_layout
+
+\begin_layout Standard
+Every features presented except the data capture is available even without
+ the nodeMCU + sensor and/or internet connection.
+\end_layout
+
+\begin_layout Section
+ThingsBoard comparaison (failed)
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ThingsBoard-comparaison-(failed)"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Work done
+\end_layout
+
+\begin_layout Standard
+I created an account on ThingsBoard, then a system in ThingsBoard and got
+ the token of it that I should have used.
+\end_layout
+
+\begin_layout Standard
+I wrote the code that was supposed to send data to ThingsBoard, using the
+ instructions ( 
+\begin_inset CommandInset href
+LatexCommand href
+name "medium.com"
+target "https://medium.com/@isuranirmal/visualizing-telemetry-data-using-nodemcu-iot-device-with-thingsboard-iot-dashboard-26ec8932a5cc"
+literal "false"
+
+\end_inset
+
+ ) given in the assingment.
+\end_layout
+
+\begin_layout Standard
+This code is still available in the git repository under the name thingsboard.ino
+ in /server/firmware/.
+\end_layout
+
+\begin_layout Subsection
+Incident
+\end_layout
+
+\begin_layout Standard
+When trying to the upload this code on the nodeMCU, it crashed and even
+ after repluging it, the usb port was not detected by arduinoIDE.
+\end_layout
+
+\begin_layout Standard
+After I reseted the nodeMCU using the flash button, the usb port appeared
+ again, but there was an error each times I tried to upload a code to the
+ nodeMCU afterward.
+\end_layout
+
+\begin_layout Standard
+The crash was apparently caused by a buffer overflow present in the code
+ that I pasted from the instructions :
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+long rssi = WiFi.RSSI();
+\end_layout
+
+\begin_layout Plain Layout
+
+char buffer[3];
+\end_layout
+
+\begin_layout Plain Layout
+
+char* strptr = ltoa(rssi, buffer, 10);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
